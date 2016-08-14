@@ -11,7 +11,7 @@ javascript-express/npm-debug.log
 python-bottle/.env
 ruby-sinatra/.env
 ruby-sinatra/Gemfile.lock
-csharp-nancy/*/bin/
-csharp-nancy/*/obj/
+csharp-nancy/csharp-nancy/bin/
+csharp-nancy/csharp-nancy/obj/
 csharp-nancy/packages/
 csharp-nancy/.vs/

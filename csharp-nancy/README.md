@@ -3,22 +3,11 @@ RingCentral 3-Legged OAuth Demo in CSharp
 
 ## Overview
 
-There are two demo projects in this folder: `csharp-client-nancy` and `csharp-sdk-nancy`.
-
-Both of them are 3-legged OAuth demo that runs using CSharp and [Nancy](http://nancyfx.org/).
-
-`csharp-client-nancy` is written with [RingCentral CSharp Client](https://github.com/ringcentral/ringcentral-csharp-client).
-
-`csharp-sdk-nancy` is written with [RingCentral CSharp SDK](https://github.com/ringcentral/ringcentral-csharp).
-
-If you are using RingCentral CSharp Client, please refer to `csharp-client-nancy` project.
-
-If you are using RingCentral CSharp SDK, please refer to `csharp-sdk-nancy` project.
+This is a quick 3-legged OAuth demo that runs using CSharp and [Nancy](http://nancyfx.org/) with the [RingCentral CSharp SDK](https://github.com/ringcentral/ringcentral-csharp) v0.1.21.
 
 ## Installation
 
-The demo is created with Visual Studio 2015 Community Edition and .NET framework v4.6.1. 
-It should also work with Visual Studio 2012 and .NET framework v4.0.
+The demo is created with Visual Studio 2015 Community Edition and .NET framework v4.6.1. It should also work with Visual Studio 2012 and .NET framework v4.0.
 
 Open the solution file with Visual Studio, build the solution. NuGet packages will be automatically installed.
 
@@ -26,16 +15,8 @@ Open the solution file with Visual Studio, build the solution. NuGet packages wi
 
 Edit the `config.json` file to add your application key and application secret.
 
-#### for `csharp-client-nancy`
 ```powershell
-$ cd ringcentral-demos-oauth\csharp-nancy\csharp-client-nancy
-$ cp .\config-sample.json .\bin\Debug\config.json
-$ vim .\bin\Debug\config.json
-```
-
-#### for `csharp-sdk-nancy`
-```powershell
-$ cd ringcentral-demos-oauth\csharp-nancy\csharp-sdk-nancy
+$ cd ringcentral-demos-oauth\csharp-nancy\csharp-nancy
 $ cp .\config-sample.json .\bin\Debug\config.json
 $ vim .\bin\Debug\config.json
 ```
