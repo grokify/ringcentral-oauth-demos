@@ -17,23 +17,32 @@ $dotenv->load();
 $rcsdk = new SDK($_ENV['RC_AppKey'],$_ENV['RC_AppSecret'],$_ENV['RC_Server'], 'OAuth-Demo-PHP', '1.0.0');
 
 $platform = $rcsdk->platform();
+ 
+// Using the authUrl to call the platform function
+$url = $platform
+       ->authUrl(array(
+                    'redirectUri' => isset($_ENV['RC_Redirect_Url']) ? $_ENV['RC_Redirect_Url'] : '',
+                    'state'       => 'myState',
+                    'brandId'     => '',
+                    'display'     => '',
+                    'prompt'      => ''
+                ));
+		
 
-$url = $platform->createUrl('/restapi/oauth/authorize' . '?' .
-	http_build_query(
-        array (
-            'response_type' => 'code',
-            'redirect_uri'  => $_ENV['RC_Redirect_Url'],
-            'client_id'     => $_ENV['RC_AppKey'],
-            'state'         => $_ENV['RC_State'],
-            'brand_id '     => '',
-            'display'       => '',  
-            'prompt'        => ''
-        )
-    ),
-    array (
-        'addServer' => true
-    )
-);
+// Store the url in PHP Session Objec;
+$_SESSION['url'] = $url; 
+
+
+if(isset($_SESSION['query']))
+{
+
+	$qs = $platform->parseAuthRedirectUrl($_SESSION['query']);
+    $qs["redirectUri"] = $_ENV['RC_Redirect_Url'];
+    
+	$apiResponse = $platform->login($qs);
+    $body = json_encode(json_decode($apiResponse->text(), true), JSON_PRETTY_PRINT);
+    $_SESSION['response'] = $apiResponse->text();
+}
 
 ?>
 <!DOCTYPE html>
@@ -71,7 +80,7 @@ $url = $platform->createUrl('/restapi/oauth/authorize' . '?' .
 		                }
 		            } catch(e) {
 		                console.log(e);
-		                //win.close();
+		                // win.close();
 		            }
         			}, 100);
 			        
