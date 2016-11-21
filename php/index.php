@@ -18,22 +18,20 @@ $rcsdk = new SDK($_ENV['RC_AppKey'],$_ENV['RC_AppSecret'],$_ENV['RC_Server'], 'O
 
 $platform = $rcsdk->platform();
 
-$url = $platform->createUrl('/restapi/oauth/authorize' . '?' .
-	http_build_query(
-        array (
-            'response_type' => 'code',
-            'redirect_uri'  => $_ENV['RC_Redirect_Url'],
-            'client_id'     => $_ENV['RC_AppKey'],
-            'state'         => $_ENV['RC_State'],
-            'brand_id '     => '',
-            'display'       => '',  
-            'prompt'        => ''
-        )
-    ),
-    array (
-        'addServer' => true
-    )
-);
+
+// using the authUrl to call the platform function
+$url = $platform
+       ->authUrl(array(
+                    'redirectUri' => isset($_ENV['RC_Redirect_Url']) ? $_ENV['RC_Redirect_Url'] : '',
+                    'state'       => 'myState',
+                    'brandId'     => '',
+                    'display'     => '',
+                    'prompt'      => ''
+                ));
+
+//Store the sdk instance in PHP Session Object
+$_SESSION['sdk'] = $rcsdk; 
+$_SESSION['url'] = $url;      
 
 ?>
 <!DOCTYPE html>
@@ -71,7 +69,7 @@ $url = $platform->createUrl('/restapi/oauth/authorize' . '?' .
 		                }
 		            } catch(e) {
 		                console.log(e);
-		                //win.close();
+		                // win.close();
 		            }
         			}, 100);
 			        
