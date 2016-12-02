@@ -37,6 +37,3 @@ function processCode()
 $result = processCode();
 
 ?>
-
-
-
