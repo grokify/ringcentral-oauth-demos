@@ -10,22 +10,31 @@ session_start();
 
 // Parse the .env file
 $dotenv = new Dotenv\Dotenv(getcwd());
-$dotenv -> load();
+$dotenv->load();
 
 
 function processCode()
 {
 
-    if(!isset($_GET['code'])) 
-    {
+    if (!isset($_GET['code'])) {
         return;
     }
 
-    $_SESSION['query'] = $_SERVER['QUERY_STRING']; 
- 
+    // Create SDK instance
+    $rcsdk = new SDK($_ENV['RC_AppKey'], $_ENV['RC_AppSecret'], $_ENV['RC_Server'], 'OAuth-Demo-PHP', '1.0.0');
+
+    // Create Platform instance
+    $platform = $rcsdk->platform();
+
+    $qs = $platform->parseAuthRedirectUrl($_SERVER['QUERY_STRING']);
+    $qs["redirectUri"] = $_ENV['RC_Redirect_Url'];
+
+    $apiResponse = $platform->login($qs);
+    $_SESSION['sessionAccessToken'] = $apiResponse->text();
+
 }
 
-$result= processCode();
+$result = processCode();
 
 ?>
 
