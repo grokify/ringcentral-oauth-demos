@@ -69,7 +69,7 @@ The following are example screenshots of the authentication and authorization pa
   * [ringcentral-sdk-ruby](https://github.com/grokify/ringcentral-sdk-ruby)
 * Example Code
   * [ringcentral-js/demo/oauth](https://github.com/ringcentral/ringcentral-js/tree/5f5197ccb93410d732410127d54449e79ec5c64d/demo/oauth)
-  * [ringcentral-oauth-demos](https://github.com/grokify/ringcentral-oauth-demos) - this project
+  * [ringcentral-oauth-demos](https://github.com/ringcentral/ringcentral-oauth-demos) - this project
   * [ringcentral-cti-demo-js](https://github.com/ringcentral/ringcentral-cti-demo-js) 
 
 ## Contributing

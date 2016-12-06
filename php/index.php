@@ -32,6 +32,12 @@ $url = $platform
 // Store the url in PHP Session Objec;
 $_SESSION['url'] = $url;
 
+//set the access token using the auth object
+if (isset($_SESSION['sessionAccessToken'])) {
+
+    $platform->auth()->setData((array)json_decode($_SESSION['sessionAccessToken']));
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -87,8 +93,9 @@ $_SESSION['url'] = $url;
 <p>After retrieving the token use the PHP SDK's auth class's set_data method to load the access_token.</p>
 
 <p>Access Token</p>
-<pre
-    style="background-color:#efefef;padding:1em;overflow-x:scroll"><?php echo isset($_SESSION['sessionAccessToken']) ? $_SESSION['sessionAccessToken'] : ''; ?></pre>
+<pre>
+    <style="background-color:#efefef;padding:1em;overflow-x:scroll"><?php if ($platform->loggedIn()) echo json_encode($platform->auth()->data(), JSON_PRETTY_PRINT); ?></pre>
+
 
 <p>More info:</p>
 <ul>

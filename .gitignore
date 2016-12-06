@@ -3,6 +3,7 @@
 php/composer.lock
 php/composer.phar
 php/vendor
+.vscode
 javascript/public/components
 javascript/public/config.js
 javascript-express/.env
